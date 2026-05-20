@@ -38,12 +38,12 @@ app.add_middleware(
 app.include_router(comment_router)
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root():
     return {"status": "running", "service": "AI Comment Generator Backend"}
 
 
-@app.get("/health", tags=["Health"])
+@app.get("/health", tags=["Health"], methods=["GET", "HEAD"])
 async def health_check():
     """Health check endpoint — confirms the service is running."""
     return {
